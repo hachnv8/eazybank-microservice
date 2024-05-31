@@ -5,12 +5,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.0</version>
+        <version>3.2.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.learnmicroservice</groupId>
     <artifactId>card-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>card-service</name>
     <description>card-service</description>
     <properties>
@@ -64,6 +65,19 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.4.1</version>
+                <configuration>
+                    <to>
+                        <image>hachnv/${project.artifactId}:s4</image>
+                    </to>
+                    <from>
+                        <image>gcr.io/distroless/java21-debian12:latest</image>
+                    </from>
                 </configuration>
             </plugin>
         </plugins>
