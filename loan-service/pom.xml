@@ -70,6 +70,19 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.4.1</version>
+                <configuration>
+                    <to>
+                        <image>hachnv/${project.artifactId}:s6</image>
+                    </to>
+                    <from>
+                        <image>gcr.io/distroless/java21-debian12:latest</image>
+                    </from>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

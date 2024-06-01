@@ -73,7 +73,7 @@
                 <version>3.4.1</version>
                 <configuration>
                     <to>
-                        <image>hachnv/${project.artifactId}:s4</image>
+                        <image>hachnv/${project.artifactId}:s6</image>
                     </to>
                     <from>
                         <image>gcr.io/distroless/java21-debian12:latest</image>
