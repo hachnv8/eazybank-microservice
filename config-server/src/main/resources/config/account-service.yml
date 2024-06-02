@@ -1,11 +1,7 @@
-spring:
-  config:
-    activate:
-      on-profile: "qa"
 build:
-  version: "2.0"
+  version: "3.0"
 account:
-  message: "Welcome to Eazybank account related to QA API."
+  message: "Welcome to Eazybank account related to local API."
   contactDetails:
     name: "John Doe"
     email: "JohnDoe@gmail.com"

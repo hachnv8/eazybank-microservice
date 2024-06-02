@@ -1,9 +1,11 @@
 server:
-  port: 8080
+  port: 8090
 
 spring:
   application:
     name: card-service
+  profiles:
+    active: "prod"
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:carddb
@@ -17,3 +19,16 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  config:
+    import: "optional:configserver:http://localhost:8071"
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
