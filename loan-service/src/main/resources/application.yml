@@ -1,5 +1,5 @@
 server:
-  port: 9000
+  port: 8090
 spring:
   application:
     name: loan-service
@@ -31,3 +31,8 @@ management:
     web:
       exposure:
         include: "*"
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
