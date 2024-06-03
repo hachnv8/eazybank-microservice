@@ -72,14 +72,19 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-bus</artifactId>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-            <version>4.1.1</version>
-        </dependency>
+        <!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-bus</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-bus-amqp</artifactId>-->
+<!--            <version>4.1.1</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -102,7 +107,7 @@
                 <version>3.4.1</version>
                 <configuration>
                     <to>
-                        <image>hachnv/${project.artifactId}:s6</image>
+                        <image>hachnv/${project.artifactId}:s7</image>
                     </to>
                     <from>
                         <image>openjdk:21-jdk</image>

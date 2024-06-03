@@ -7,25 +7,27 @@ spring:
   profiles:
     active: "prod"
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:carddb
-    username: sa
-    password: ''
-  h2:
-    console:
-      enabled: true
+    url: jdbc:mysql://localhost:3308/carddb
+    username: root
+    password: root
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  sql:
+    init:
+      mode: always
   config:
     import: "optional:configserver:http://localhost:8071"
-  rabbitmq:
-    host: "localhost"
-    port: 5672
-    username: "guest"
-    password: "guest"
+#  rabbitmq:
+#    host: "localhost"
+#    port: 5672
+#    username: "guest"
+#    password: "guest"
 
 management:
   endpoints:

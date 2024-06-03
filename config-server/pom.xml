@@ -32,20 +32,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-bus</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-            <version>4.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-monitor</artifactId>
-            <version>4.1.2</version>
-        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -71,7 +57,7 @@
                 <version>3.4.1</version>
                 <configuration>
                     <to>
-                        <image>hachnv/${project.artifactId}:s6</image>
+                        <image>hachnv/${project.artifactId}:s7</image>
                     </to>
                     <from>
                         <image>openjdk:21-jdk</image>
