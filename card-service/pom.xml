@@ -72,11 +72,6 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
@@ -102,7 +97,7 @@
                 <version>3.4.1</version>
                 <configuration>
                     <to>
-                        <image>hachnv/${project.artifactId}:s8</image>
+                        <image>hachnv/${project.artifactId}:s9</image>
                     </to>
                     <from>
                         <image>openjdk:21-jdk</image>

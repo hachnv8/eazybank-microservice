@@ -2,40 +2,41 @@ server:
   port: 8090
 spring:
   application:
-    name: loan-service
+    name: "loan-service"
   profiles:
     active: "prod"
   datasource:
-    url: jdbc:mysql://localhost:3309/loandb
-    username: root
-    password: root
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+  h2:
+    console:
+      enabled: true
   jpa:
-    defer-datasource-initialization: true
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
     show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
-  sql:
-    init:
-      mode: always
   config:
-    import: optional:configserver:http://localhost:8071
-#  rabbitmq:
-#    host: "localhost"
-#    port: 5672
-#    username: "guest"
-#    password: "guest"
+    import: "optional:configserver:http://localhost:8071"
 
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
   endpoint:
     shutdown:
       enabled: true
+    health:
+      probes:
+        enabled: true
   info:
     env:
       enabled: true
@@ -56,5 +57,10 @@ eureka:
 info:
   app:
     name: "loan-service"
-    description: "Eazy bank account-service application"
+    description: "Eazy bank loan-service application"
     version: "1.0.0"
+
+logging:
+  level:
+    com:
+      learnmicroservice: DEBUG

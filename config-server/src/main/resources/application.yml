@@ -13,13 +13,6 @@ spring:
           timeout: 5
           clone-on-start: true
           force-pull: true
-#        native:
-#          search-locations: "classpath:/config"
-#  rabbitmq:
-#    host: "localhost"
-#    port: 5672
-#    username: "guest"
-#    password: "guest"
 encrypt:
   key: "koU3mDOij0o4bsXCF8iSHxewCGTdRypF"
 server:
@@ -31,9 +24,9 @@ management:
       exposure:
         include: "*"
   health:
-    readinessstate:
+    readiness-state:
       enabled: true
-    livenessstate:
+    liveness-state:
       enabled: true
   endpoint:
     health:
