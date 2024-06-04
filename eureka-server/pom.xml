@@ -67,7 +67,7 @@
                 <version>3.4.1</version>
                 <configuration>
                     <to>
-                        <image>hachnv/${project.artifactId}:s7</image>
+                        <image>hachnv/${project.artifactId}:s8</image>
                     </to>
                     <from>
                         <image>openjdk:21-jdk</image>

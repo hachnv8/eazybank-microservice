@@ -80,15 +80,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-        <!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-bus</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-bus-amqp</artifactId>-->
-<!--            <version>4.1.1</version>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -111,7 +102,7 @@
                 <version>3.4.1</version>
                 <configuration>
                     <to>
-                        <image>hachnv/${project.artifactId}:s7</image>
+                        <image>hachnv/${project.artifactId}:s8</image>
                     </to>
                     <from>
                         <image>openjdk:21-jdk</image>
