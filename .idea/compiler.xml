@@ -10,6 +10,7 @@
         <module name="config-server" />
         <module name="card-service" />
         <module name="account-service" />
+        <module name="eureka-server" />
         <module name="loan-service" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
@@ -26,6 +27,7 @@
       <module name="account-service" options="-parameters" />
       <module name="card-service" options="-parameters" />
       <module name="config-server" options="-parameters" />
+      <module name="eureka-server" options="-parameters" />
       <module name="loan-service" options="-parameters" />
     </option>
   </component>
