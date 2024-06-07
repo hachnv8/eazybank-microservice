@@ -9,6 +9,9 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 2s
 management:
   endpoints:
     web:
@@ -35,3 +38,16 @@ logging:
   level:
     com:
       learnmicroservice: DEBUG
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+#        circuit breaker se su dung 10 request gan nhat de danh gia ty le loi
+        sliding-window-size: 10
+#        so luong yeu cau duoc phep di qua circuit breaker khi no o trang thai half-open
+        permitted-number-of-calls-in-half-open-state: 2
+#        ty le loi duoc phep toi da(theo phan tram) truoc khi Circuit Breaker chuyen sang trang thai Open
+        failure-rate-threshold: 50
+#        thoi gian cho(tinh bang mili giay) ma Circuit Breaker se o trang thai Open truoc khi chuyen sang Half-Open
+        wait-duration-in-open-state: 10000

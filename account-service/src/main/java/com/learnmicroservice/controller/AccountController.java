@@ -5,6 +5,7 @@ import com.learnmicroservice.dto.AccountContactInfoDto;
 import com.learnmicroservice.dto.CustomerDto;
 import com.learnmicroservice.dto.ResponseDto;
 import com.learnmicroservice.service.AccountService;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
@@ -83,11 +84,18 @@ public class AccountController {
         }
     }
 
+    @Retry(name = "getBuildInfo", fallbackMethod = "getBuildInfoFallback")
     @GetMapping("/build-info")
     public ResponseEntity<String> getBuildVersion() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(buildVersion);
+    }
+
+    public ResponseEntity<String> getBuildInfoFallback(Throwable throwable) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("0.9");
     }
 
     @GetMapping("/java-version")

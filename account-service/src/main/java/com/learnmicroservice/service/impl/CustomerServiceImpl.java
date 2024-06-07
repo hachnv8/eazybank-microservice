@@ -12,6 +12,7 @@ import com.learnmicroservice.service.CustomerService;
 import com.learnmicroservice.service.client.CardFeignClient;
 import com.learnmicroservice.service.client.LoanFeignClient;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,9 @@ import org.springframework.stereotype.Service;
 public class CustomerServiceImpl implements CustomerService {
     private final AccountRepository accountRepository;
     private final CustomerRepository customerRepository;
+    @Qualifier("com.learnmicroservice.service.client.CardFeignClient")
     private final CardFeignClient cardFeignClient;
+    @Qualifier("com.learnmicroservice.service.client.LoanFeignClient")
     private final LoanFeignClient loanFeignClient;
 
     @Override
@@ -37,10 +40,14 @@ public class CustomerServiceImpl implements CustomerService {
         customerDetailsDto.setAccountDto(AccountMapper.mapToAccountDto(account, new AccountDto()));
 
         ResponseEntity<LoanDto> loanDtoResponseEntity = loanFeignClient.fetchLoanDetails(correlationId, mobileNumber);
-        customerDetailsDto.setLoanDto(loanDtoResponseEntity.getBody());
+        if (loanDtoResponseEntity != null) {
+            customerDetailsDto.setLoanDto(loanDtoResponseEntity.getBody());
+        }
 
         ResponseEntity<CardDto> cardDtoResponseEntity = cardFeignClient.fetchCardDetails(correlationId, mobileNumber);
-        customerDetailsDto.setCardDto(cardDtoResponseEntity.getBody());
+        if (cardDtoResponseEntity != null) {
+            customerDetailsDto.setCardDto(cardDtoResponseEntity.getBody());
+        }
         return customerDetailsDto;
     }
 }

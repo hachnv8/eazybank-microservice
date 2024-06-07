@@ -100,9 +100,11 @@ public class LoanController {
 
     @GetMapping("/contact-info")
     public ResponseEntity<LoanContactInfoDto> getContactInfo() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(loanContactInfoDto);
+        log.debug("Invoked Loan contact-info API");
+        throw new RuntimeException();
+//        return ResponseEntity
+//                .status(HttpStatus.OK)
+//                .body(loanContactInfoDto);
     }
 
 }
