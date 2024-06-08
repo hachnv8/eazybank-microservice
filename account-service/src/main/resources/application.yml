@@ -84,7 +84,21 @@ resilience4j:
   retry:
     configs:
       default:
+#        so lan thu lai toi da ma he thong thuc hien khi mot tac vu that bai
         max-attempts: 3
-        wait-duration: 100
+#        thoi gian cho giua cac lan thu lai
+        wait-duration: 500
+#        bat hoac tat co che backoff theo ham mu~, tuc la thoi gian cho se tang theo cap so nhan sau moi lan thu
         enable-exponential-backoff: true
+#        he so nhan cho co che backoff theo ham' mu~
         exponential-backoff-multiplier: 2
+        ignore-exceptions:
+          - java.lang.NullPointerException
+        retry-exceptions:
+          - java.util.concurrent.TimeoutException
+  ratelimiter:
+    configs:
+      default:
+        timeout-duration: 1000
+        limit-refresh-period: 5000
+        limit-for-period: 1
