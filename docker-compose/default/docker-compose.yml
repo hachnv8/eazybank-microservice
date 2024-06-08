@@ -1,6 +1,18 @@
 services:
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli ping | grep PONG" ]
+      timeout: 10s
+      retries: 10
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
+
   config-server:
-    image: "hachnv/config-server:s9"
+    image: "hachnv/config-server:s10"
     container_name: "configserver-ms"
     ports:
       - "8071:8071"
@@ -15,7 +27,7 @@ services:
       file: common-config.yml
 
   eureka-server:
-    image: "hachnv/eureka-server:s9"
+    image: "hachnv/eureka-server:s10"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -35,7 +47,7 @@ services:
       SPRING_APPLICATION_NAME: "eureka-server"
 
   account-service:
-    image: "hachnv/account-service:s9"
+    image: "hachnv/account-service:s10"
     container_name: "account-ms"
     ports:
       - "8080:8080"
@@ -57,7 +69,7 @@ services:
       service: microservice-eureka-config
 
   loan-service:
-    image: "hachnv/loan-service:s9"
+    image: "hachnv/loan-service:s10"
     container_name: "loan-ms"
     ports:
       - "8090:8090"
@@ -112,8 +124,14 @@ services:
         condition: service_healthy
       card-service:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     environment:
       SPRING_APPLICATION_NAME: "api-gateway"
+      SPRING_DATA_REDIS_CONNECT-TIMEOUT: 2s
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      SPRING_DATA_REDIS_TIMEOUT: 1s
     extends:
       file: common-config.yml
       service: microservice-eureka-config
