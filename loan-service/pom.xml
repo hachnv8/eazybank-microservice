@@ -80,6 +80,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -102,7 +107,7 @@
                 <version>3.4.1</version>
                 <configuration>
                     <to>
-                        <image>hachnv/${project.artifactId}:s10</image>
+                        <image>hachnv/${project.artifactId}:s11</image>
                     </to>
                     <from>
                         <image>openjdk:21-jdk</image>

@@ -113,7 +113,7 @@ services:
       service: microservice-eureka-config
 
   api-gateway:
-    image: "hachnv/api-gateway:s9"
+    image: "hachnv/api-gateway:s10"
     container_name: "apigateway-ms"
     ports:
       - "8072:8072"
