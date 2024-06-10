@@ -9,7 +9,6 @@ import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JConfigB
 import org.springframework.cloud.client.circuitbreaker.Customizer;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
-import org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -53,7 +52,7 @@ public class ApiGatewayApplication {
                         .path("/eazybank/card-service/**")
                         .filters(f -> f.rewritePath("/eazybank/card-service/(?<segment>.*)", "/${segment}")
                                 .addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
-                                .requestRateLimiter(config -> config.setRateLimiter(redisRateLimiter()).setKeyResolver(userKeyResolver()))
+//                                .requestRateLimiter(config -> config.setRateLimiter(redisRateLimiter()).setKeyResolver(userKeyResolver()))
                         )
                         .uri("lb://CARD-SERVICE")
                 )
@@ -66,11 +65,11 @@ public class ApiGatewayApplication {
                 .circuitBreakerConfig(CircuitBreakerConfig.ofDefaults())
                 .timeLimiterConfig(TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(4)).build()).build());
     }
-
-    @Bean
-    public RedisRateLimiter redisRateLimiter() {
-        return new RedisRateLimiter(1, 1, 1);
-    }
+//
+//    @Bean
+//    public RedisRateLimiter redisRateLimiter() {
+//        return new RedisRateLimiter(1, 1, 1);
+//    }
 
     @Bean
     KeyResolver userKeyResolver() {

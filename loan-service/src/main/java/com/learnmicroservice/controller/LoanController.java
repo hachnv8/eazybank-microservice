@@ -44,12 +44,12 @@ public class LoanController {
 
     @GetMapping("/fetch")
     public ResponseEntity<LoanDto> fetchLoanDetails(
-            @RequestHeader("eazybank-correlation-id") String correlationId,
             @RequestParam
             @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits") String mobileNumber
     ) {
-        log.debug("Fetching loan for correlation id {}", correlationId);
+        log.debug("fetchLoanDetails method start");
         LoanDto LoanDto = loanService.fetchLoan(mobileNumber);
+        log.debug("fetchLoanDetails method end");
         return ResponseEntity.status(HttpStatus.OK).body(LoanDto);
     }
 
@@ -101,10 +101,9 @@ public class LoanController {
     @GetMapping("/contact-info")
     public ResponseEntity<LoanContactInfoDto> getContactInfo() {
         log.debug("Invoked Loan contact-info API");
-        throw new RuntimeException();
-//        return ResponseEntity
-//                .status(HttpStatus.OK)
-//                .body(loanContactInfoDto);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(loanContactInfoDto);
     }
 
 }

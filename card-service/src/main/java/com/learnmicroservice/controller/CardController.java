@@ -43,12 +43,12 @@ public class CardController {
 
     @GetMapping("/fetch")
     public ResponseEntity<CardDto> fetchCardDetails(
-            @RequestHeader("eazybank-correlation-id") String correlationId,
             @RequestParam
             @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits") String mobileNumber
     ) {
-        log.debug("Fetch card details for correlation id {}", correlationId);
+        log.debug("fetchCardDetails method start");
         CardDto cardDto = cardService.fetchCard(mobileNumber);
+        log.debug("fetchCardDetails method end");
         return ResponseEntity.status(HttpStatus.OK).body(cardDto);
     }
 
