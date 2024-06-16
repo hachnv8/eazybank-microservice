@@ -1,6 +1,6 @@
 services:
   config-server:
-    image: "hachnv/config-server:s12"
+    image: "hachnv/config-server:s13"
     container_name: "configserver-ms"
     ports:
       - "8071:8071"
@@ -15,7 +15,7 @@ services:
       file: common-config.yml
 
   eureka-server:
-    image: "hachnv/eureka-server:s12"
+    image: "hachnv/eureka-server:s13"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -35,7 +35,7 @@ services:
       SPRING_APPLICATION_NAME: "eureka-server"
 
   account-service:
-    image: "hachnv/account-service:s12"
+    image: "hachnv/account-service:s13"
     container_name: "account-ms"
     ports:
       - "8080:8080"
@@ -57,7 +57,7 @@ services:
       service: microservice-eureka-config
 
   loan-service:
-    image: "hachnv/loan-service:s12"
+    image: "hachnv/loan-service:s13"
     container_name: "loan-ms"
     ports:
       - "8090:8090"
@@ -79,7 +79,7 @@ services:
       service: microservice-eureka-config
 
   card-service:
-    image: "hachnv/card-service:s12"
+    image: "hachnv/card-service:s13"
     container_name: "card-ms"
     ports:
       - "9000:9000"
@@ -101,7 +101,7 @@ services:
       service: microservice-eureka-config
 
   api-gateway:
-    image: "hachnv/api-gateway:s12"
+    image: "hachnv/api-gateway:s13"
     container_name: "apigateway-ms"
     ports:
       - "8072:8072"

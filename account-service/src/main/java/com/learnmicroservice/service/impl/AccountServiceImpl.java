@@ -2,6 +2,7 @@ package com.learnmicroservice.service.impl;
 
 import com.learnmicroservice.constant.AccountConstant;
 import com.learnmicroservice.dto.AccountDto;
+import com.learnmicroservice.dto.AccountMsgDto;
 import com.learnmicroservice.dto.CustomerDto;
 import com.learnmicroservice.entity.Account;
 import com.learnmicroservice.entity.Customer;
@@ -13,6 +14,8 @@ import com.learnmicroservice.repository.AccountRepository;
 import com.learnmicroservice.repository.CustomerRepository;
 import com.learnmicroservice.service.AccountService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -20,9 +23,11 @@ import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final CustomerRepository customerRepository;
+    private final StreamBridge streamBridge;
 
     /**
      * @param customerDto - CustomerDto Object
@@ -36,7 +41,16 @@ public class AccountServiceImpl implements AccountService {
                     + customerDto.getMobileNumber());
         }
         Customer savedCustomer = customerRepository.save(customer);
-        accountRepository.save(createdNewAccount(savedCustomer));
+        Account savedAccount = accountRepository.save(createdNewAccount(savedCustomer));
+        sendCommunication(savedAccount, savedCustomer);
+    }
+
+    private void sendCommunication(Account account, Customer customer) {
+        var accountMsgDto = new AccountMsgDto(account.getAccountNumber(), customer.getName(),
+                customer.getEmail(), customer.getMobileNumber());
+        log.info("Sending communication request for the details: {}", accountMsgDto);
+        var result = streamBridge.send("sendCommunication-out-O", accountMsgDto);
+        log.info("Is the communication request successfully process?: {}", result);
     }
 
     /**
